@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<body style="background-color:black;">
+		<h1 style="color:white">Emergency<br>Assistant App</h1>
+		<br><br><br>
+		<p style="text-align:center;color:white;"><b>Sign Up to continue</b></p>
+		<form action="" style="color:white" name="input" action="html_form_action.asp" method="get">
+			Your Phone Number: <input id="phonenumber" type="text" name="phonenumber"><br>
+			<br><br><br>
+			<select name="termsOfUse">
+				<option id="tou" value="tou">Terms of Use</option>
+			</select>
+			<font>the Terms of Use</font>
+			<input type="checkbox" id="termsOfUse" name="termsOfUse" value="termsOfUse"><font color="white">I accept</font>
+			<br><br>
+			<input onClick="doSomething()" type="submit" value="Submit">
+		</form> 
+		<script type="text/javascript">
+		var termsOfUse = document.getElementById("termsOfUse");		
+			//function callAnothePage(){   //Si no es Android, se comenta esta funcion, y se descomenta el window.navigate
+			//	window.location("loginPage.html");
+			//}
+		
+			function doSomething(){
+			if (termsOfUse){
+				var phonenumber = document.getElementById("phonenumber");
+				if(NaN(phonenumber.value || phonenumber.length>10)){
+				phonenumber='';
+				termsOfUse=false;
+				window.navigate("loginPage.html");
+				//callAnothePage();		//Si no es Android, se descomenta esto		
+				}
+				else{
+				window.navigate("mainPage.html");
+				}
+			}
+		</script>
+	</body>
+</html>
