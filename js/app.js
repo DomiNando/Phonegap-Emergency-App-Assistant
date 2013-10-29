@@ -9,6 +9,7 @@ var $startChat = $("#startChat");
 var $chatNextButton = $("#next");
 var $chatPage= $("#chatScreen");
 var $hospitalPage = $("#hospitals");
+var $registrationPage = $("#registrationPage");   //
 
 
 // Elements
@@ -30,9 +31,16 @@ var $chatAmbulance = $("#chatAmbulance");
 var $callNext = $("#callNext");
 var $hangUp = $("#hangUp");
 var $previous = $("#previous");
+var $registerButton = $("#registerButton");
+var $register = $("#register");
+var $userName = $("#userName");
+var $password = $("#clave");
+var $confirmPassword = $("#confirmPassword");
+var $name = $("#name");
+var $userPassword = $("#userPassword");
 var counter = 0;
 var arrayStack = new Array();
-var usersArray = new Array();
+var usersArray = new Array(10);
 var receiver = usersArray[0];
 
 
@@ -50,12 +58,20 @@ var emergencyApp = {
 			$main.fadeIn("fast", emergencyApp.mainPage());  //la pagina de los botones call aparece
 
 		} else {
+			$registrationPage.hide();
 			$login.show();
+			
+			$registerButton.click(function () {
+				$sections.hide();
+				$registrationPage.fadeIn("fast");
+				emergencyApp.registrationPage();
+			});
+			
 			$done.click(function () {
 				var $termsAccepted = $("#termsAccepted").is(":checked");
 				console.log($termsAccepted);
 				
-				if ($termsAccepted && $phoneNumber.val().length == 10) {
+				if ($termsAccepted && $phoneNumber.val().length == 10 && $userPassword.val() == $password.val() ) {
 					var numero = parseInt($phoneNumber.val(), 10);
 					if (!isNaN(numero)){
 				//if ($termsAccepted) {
@@ -77,8 +93,26 @@ var emergencyApp = {
 			$otherServices.fadeIn("fast");
 		});
 	},
+	
+	registrationPage: function() {
+		$register.click(function () {
+		if ( $userName.val() !== null || $password.val() !== null || $confirmPassword.val() !== null || $name.val() !== null) {
+			if( $password.val() == $confirmPassword.val()) {
+			//Los valores de los fields del usuario se pueden sacar de estas variables JQuery hacia el DB?
+			//Si no, entonces se pueden salvar como variables globales y se exportan al DB
+			$sections.hide();
+			$login.show();
+			}
+		}
+		});
+	},
 
 	createEvents: function () {
+	
+		$registerButton.click(function () {
+			$sections.hide();
+			$registrationPage.fadeIn("fast");
+		});
 
 		$back.click(function () {
 			$sections.hide();
@@ -163,6 +197,7 @@ var emergencyApp = {
 				receiver = usersArray[counter];
 				$chatPage.fadeIn("fast");
 			} else {
+				counter = 0;
 				arrayStack = [];
 				$sections.hide();
 				$main.fadeIn("fast");
@@ -179,6 +214,7 @@ var emergencyApp = {
 				$call.fadeIn("fast");
 				//call(receiver); codigo de la llamada que recibe al receptor de la misma
 			} else {
+				counter = 0;
 				arrayStack = [];
 				$sections.hide();
 				$main.fadeIn("fast");
