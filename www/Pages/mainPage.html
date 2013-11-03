@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+function doAction(){
+	if(value != “other”) {
+    	if(value != "911")
+    	var category = document.getElementbyId("");
+    	
+    	window.navigate("call.html");                    //go to call page and save the value type to send to server
+    } else{
+         window.navigate("otherServices.html");               //link to other services page
+     }
+}
+</script>
+</head>
+<body style="background-color:black;">
+<h1 style="color:white";>Emergency<br>Assistant App</h1>
+<br>
+<br>
+<br>
+<form action="">
+<input type="button" onClick="doAction()" name="Calle 911" value="911"><br>
+<input type="button" onClick="doAction()" name="Call Police" value="police">
+<input type="button" onClick="doAction()" name="Call Firefighters" value="firefighters"><br>
+<input type="button" onClick="doAction()" name="Call Ambulance" value="ambulance">
+<input type="button" onClick="doAction()" name="Other Services" value="other">
+</form>
+</body>
+</html>
