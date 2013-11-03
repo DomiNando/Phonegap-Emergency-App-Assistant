@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+
+	function doStuff(){
+		//modal window asking if user wants to send GPS coordinates
+		
+		window.navigate("mainPage.html")
+	}
+	
+	function doOtherStuff(){
+		//brings next service
+		
+		window.navigate("call.html");
+	}
+	</script>
+</head>
+<body style="background-color:black;">
+<h1 style="color:white";>Emergency<br>Assistant App</h1>
+<br>
+<br>
+<br>
+<form action="">
+<input type="button" id="callEnd" onClick="doStuff()" value="Hang Up">
+<input type="button" id="anotherCall" onClick="doOtherStuff()"value="Call Next">
+</form>
+</body>
+</html>
