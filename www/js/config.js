@@ -9,7 +9,7 @@ var $startChat = $("#startChat");
 var $chatNextButton = $("#next");
 var $chatPage= $("#chatScreen");
 var $hospitalPage = $("#hospitals");
-var $registrationPage = $("#registrationPage");
+var $registrationPage = $("#registrationPage");   //
 var $chatWindow =$("chatting");
 
 
@@ -54,5 +54,5 @@ var $input = $("#errand");
 
 // configuration
 var isConfigured = false;
-var server = "http://websocketchat-c9-erreh.c9.io/chat";
+var server = "http://websocket-chat-c9-erreh.c9.io/chat";
 var options = {'protocols_whitelist': ['websocket', 'xdr-streaming', 'xhr-streaming', 'iframe-eventsource', 'iframe-htmlfile', 'xdr-polling', 'xhr-polling', 'iframe-xhr-polling', 'jsonp-polling']}
