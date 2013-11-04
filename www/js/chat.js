@@ -29,11 +29,12 @@ var chat = {
             switch (event) {
                 case "user ok":
                 	console.log("user ok");
-                    var request = prompt("Enter destination:");
+                    var destination = prompt("Enter destination:");
 					var message = {
 		                "event" : "requestChat",
 		                "data" : {
-		                    "destination" : request
+		                    "destination" : destination,
+                            "newChat": true
 		                }
 		            };
 

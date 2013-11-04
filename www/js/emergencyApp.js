@@ -23,16 +23,17 @@ var emergencyApp = {
 				
 				if ($termsAccepted && $phoneNumber.val().length == 10 && $userPassword.val() == $password.val() ) {
 					var numero = parseInt($phoneNumber.val(), 10);
-					if (!isNaN(numero)){
+					var numNoDecimal= parseInt(numero); //si termsAccepted esta marcado, el largo del numero de telefono es 10, y el password de usuario es igual al password guardado...
+					if (!isNaN(numero) && numero === numNoDecimal && numero > 0){  //esto se cumple solo si el numero de telefono es un numero y no es decimal y es positivo
 				//if ($termsAccepted) {
 						isConfigured = true;
 				//salvar numero en memoria interna!!!
 						console.log($termsAccepted);
-						emergencyApp.init();
+						emergencyApp.init();  //recursion para comenzar Configurado
 					}
-				}
-			});
-		}
+				}                     
+			});  
+		}   
 	},
 
 	mainPage: function () {
@@ -193,19 +194,14 @@ var emergencyApp = {
 			//codigo para enviar ese geolocation
 			arrayStack = [];
 			var r=confirm("Would you like to send your GPS Coordinates to the emergency response service?");
-				if (r==true)
-  					{
-  					//codigo para enviar GPS coordinates a servicio
- 					$sections.hide();
-					$main.fadeIn("fast");
- 					 }
-				else
-  					{
- 					$sections.hide();
-					$main.fadeIn("fast");
- 				 }
-			$sections.hide();
-			$main.fadeIn("fast");
+			if (r==true) {
+				//codigo para enviar GPS coordinates a servicio
+				$sections.hide();
+				$main.fadeIn("fast");
+			} else {
+				$sections.hide();
+				$main.fadeIn("fast");
+			}
 		});
 		
 		$previous.click(function(){
