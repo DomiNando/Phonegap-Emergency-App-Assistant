@@ -192,6 +192,18 @@ var emergencyApp = {
 			//codigo phonegap de buscar geolocation del user
 			//codigo para enviar ese geolocation
 			arrayStack = [];
+			var r=confirm("Would you like to send your GPS Coordinates to the emergency response service?");
+				if (r==true)
+  					{
+  					//codigo para enviar GPS coordinates a servicio
+ 					$sections.hide();
+					$main.fadeIn("fast");
+ 					 }
+				else
+  					{
+ 					$sections.hide();
+					$main.fadeIn("fast");
+ 				 }
 			$sections.hide();
 			$main.fadeIn("fast");
 		});
