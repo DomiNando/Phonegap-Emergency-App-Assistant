@@ -5,21 +5,31 @@ var chat = {
 			chatServer.close();
 		}
 
-		var chatServer = new SockJS(server, null, options);
+		var chatServer = new SockJS(server, null/*, options */);
 
 		chatServer.onopen = function() {
 
 			// Create a new user for the chat
 			var message = {
-    			"event": "new user",
-    			"data" : {
-        			//"userName": $name.val(),            
-        			"phoneNumber": $phoneNumber.val()  
-    			}
-			};
+                'event': 'login',
+                'data': {
+                    'phonenumber': $phonenumber.val();
+                }
+            };
 
 			chatServer.send(JSON.stringify(message));
-            chat.createEvents(chatServer);		
+            chat.createEvents(chatServer);	
+
+            this.destination = prompt("Enter destination:");
+                    var message = {
+                        "event" : "requestChat",
+                        "data" : {
+                            "destination" : this.destination,
+                            "newChat": true
+                        }
+                    }; 
+
+                    chatServer.send(JSON.stringify(message));	
 		};
 
 		chatServer.onmessage = function(response) {
@@ -29,20 +39,11 @@ var chat = {
             switch (event) {
                 case "user ok":
                 	console.log("user ok");
-                    var destination = prompt("Enter destination:");
-					var message = {
-		                "event" : "requestChat",
-		                "data" : {
-		                    "destination" : destination,
-                            "newChat": true
-		                }
-		            };
-
-		            chatServer.send(JSON.stringify(message));
+                    
                     break;
                 case "request ok":
                		// alert("request ok"); 
-                    destinationId = data.userId;
+                    this.destinationId = data.userId;
                     break;
                 case "message":
                 	// alert("got a message");
@@ -88,7 +89,7 @@ var chat = {
                 "event" : "message",
                 "data" : {
                     "message" : content,
-                    "destinationId": destinationId
+                    "destinationId": this.destinationId
                 }
             };
             
